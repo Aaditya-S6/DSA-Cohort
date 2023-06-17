@@ -1,0 +1,45 @@
+// Given an integer array nums, return true if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or false otherwise.
+
+ 
+
+// Example 1:
+
+// Input: nums = [1,5,11,5]
+// Output: true
+// Explanation: The array can be partitioned as [1, 5, 5] and [11].
+
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int sum=0;
+        for(int i:nums){
+            sum+=i;
+        }
+        if(sum%2!=0){
+            return false;
+        }
+        return Equalsubset(nums,sum/2,0,new HashMap<String,Boolean>());        
+    }
+    public static boolean Equalsubset(int [] arr,int halfSum,int currentIndex,HashMap<String,Boolean> memo){
+        if(halfSum==0){
+            return true;
+        }
+        if(currentIndex>=arr.length){
+            return false;
+        }
+        int currentItem=arr[currentIndex];
+        String currentKey=Integer.toString(currentItem)+"-"+Integer.toString(halfSum);
+        if(memo.containsKey(currentKey)){
+            return memo.get(currentKey);
+        }
+        boolean consider=false;
+        if(currentItem<=halfSum){
+        if(Equalsubset(arr,halfSum-currentItem,currentIndex+1,memo)){
+            return true;
+        }
+        }
+        boolean notConsider=Equalsubset(arr,halfSum,currentIndex+1,memo);
+        memo.put(currentKey,consider || notConsider);
+        return notConsider;
+
+    }
+}
