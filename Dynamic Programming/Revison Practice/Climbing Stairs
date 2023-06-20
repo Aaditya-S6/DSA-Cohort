@@ -1,0 +1,60 @@
+//We have to tell the total number of ways in which we can reach the target stair.
+
+//Intution:
+// At each stair i have two options, either i can take a jump of one or i can take a jump of two.
+//So I will make two recursive calls.
+
+import java.util.*;
+public static void main(String[] args) {
+    
+}
+public static int ClimbingStairs(int currentStair,int targetStair) {
+    //In base condition i will check ,if my currentStair==targetStair,then return 1 as i have found
+    //one way to reach the target stair
+    if(currentStair==targetStair){
+        return 1;
+    }
+    //In another base condition , if my currentStair > targetstair means ,now i can not reach my
+    //targetStair , hence i will return 0
+    if(currentStair>targetStair){
+        return 0;
+    }
+    //when i will take a jump of 1 my currentstair will become currentStair+1
+    int oneJump=ClimbingStairs(currentStair+1,targetStair);
+    //when i will take a jump of 2 my currentstair will become currentStair+2
+    int twoJumps=ClimbingStairs(currentStair+2,targetStair);
+    // i will return the sum of oneJump and twoJump because at each and every index, 
+    // we are making these two jumps , and we may reach targetStair in any way
+    // whenever we will reach targetStair function will return 1
+    return oneJump+twoJumps;
+    
+}
+//The above code uses only recursion.H
+//Its TC in O(2^n) and SC is O(n)
+
+//It can be optimised using HashMap
+//The optimised code is >>
+public static int ClimbingStairs(int currentStair,int targetStair) {
+    if(currentStair==targetStair){
+        return 1;
+    }
+    
+    if(currentStair>targetStair){
+        return 0;
+    }
+    //first of all I will make a currentKey out of the variable which is getting changed
+    int currentKey=currentStair;
+    if(memo.contains(currentKey)){
+        return memo.get(currentKey);
+    }
+    
+    int oneJump=ClimbingStairs(currentStair+1,targetStair);
+   
+    int twoJumps=ClimbingStairs(currentStair+2,targetStair);
+    memo.put(currentKey,oneJump+twoJumps);
+   
+    return oneJump+twoJumps;
+    
+}
+//The time & space complexities of this optimised code is
+// TC: O(n), SC:O(n)
