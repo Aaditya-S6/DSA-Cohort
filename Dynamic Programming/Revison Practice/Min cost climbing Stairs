@@ -40,7 +40,7 @@ public static int MinCost(int currentStair,int [] cost){
     int twoStep=cost[currentStair]+MinCost(currentStair+2,cost);
     return Math.min(oneStep,twoStep);
 }
-// This is the recursive code it can be modified using HashMap
+// This is the recursive code it can be modified using HashMapd
 // while calling i will return minimum of -> when i will start from 0th stair or when
 // i will start from 1st stair
 public static void main(String[] args) {
