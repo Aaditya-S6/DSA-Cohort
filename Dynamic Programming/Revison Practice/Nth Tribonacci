@@ -21,7 +21,7 @@ import java.util.*;
 
 public static void main(String[] args) {
     int n=5;
-    return NthTribo(n,new HashMap<Integer,Integer>())
+    return NthTribo(n,new HashMap<Integer,Integer>());
     
 }
 public static int NthTribo(int n,HashMap<Integer,Integer> memo){
@@ -40,4 +40,4 @@ public static int NthTribo(int n,HashMap<Integer,Integer> memo){
     int third=NthTribo(n-2);
     memo.put(currentKey,first+second+third);
     return first+second+third;
- 
+}
