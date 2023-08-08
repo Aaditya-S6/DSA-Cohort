@@ -1,0 +1,28 @@
+class Solution {
+    public int maxProfit(int k, int[] prices) {
+        return MaxProfit(prices,0,1,k,new HashMap<String,Integer>());
+        
+    }
+     public static int MaxProfit(int [] prices,int CurrentDay,int canBuy,int Transactions,HashMap<String,Integer> memo){
+        if(Transactions==0 || CurrentDay>=prices.length){
+            return 0;
+        }
+        int StockPrice=prices[CurrentDay];
+        String CK=CurrentDay+"-"+canBuy+"-"+Transactions;
+        if(memo.containsKey(CK)){
+            return memo.get(CK);
+        }
+        if(canBuy==1){
+            int idle=MaxProfit(prices,CurrentDay+1,canBuy,Transactions,memo);
+            int Buy=-StockPrice+MaxProfit(prices,CurrentDay+1,0,Transactions,memo);
+            memo.put(CK,Math.max(idle,Buy));
+            return  Math.max(idle,Buy);
+        }
+        else{
+            int idle=MaxProfit(prices,CurrentDay+1,canBuy,Transactions,memo);
+            int Sell=StockPrice+MaxProfit(prices,CurrentDay+1,1,Transactions-1,memo);
+            memo.put(CK,Math.max(idle,Sell));
+            return  Math.max(idle,Sell);
+        }
+    }
+}
