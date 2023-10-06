@@ -1,0 +1,28 @@
+A Heap is a special Tree-based data structure in which the tree is a complete binary tree. Generally, Heaps can be of two types:
+
+Max-Heap: In a Max-Heap the key present at the root node must be greatest among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
+
+Min-Heap: In a Min-Heap the key present at the root node must be minimum among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree. . 
+
+
+Identification-
+1-K given hoga
+2-smallest ya largest
+Agar ye dono ek sath aati hain,means ques heap
+ka hai.
+
+
+Two types of heap-
+1-Min heap -Min element top pe rhta hai
+2-Max heap - Max element top p rhta hai
+
+When to use what?
+K+Smallest  given hai---> Max heap use krenge
+K+Largest given hai----> Min heap use krenge
+
+Heap ke ques saare Sorting ke ques hote hain,
+k diya hota hai to ham k size ka heap bna lete
+hai to jo complexity hai vo nlogn se nlogk ho 
+jati hai.
+
+

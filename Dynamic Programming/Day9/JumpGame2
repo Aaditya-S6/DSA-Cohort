@@ -1,0 +1,20 @@
+class Solution {
+    public int jump(int[] nums) {
+        return Jump(nums,0,nums.length-1);
+    }
+    public static int Jump(int [] nums,int CI,int target){
+        if(CI>=target){
+            return 0;
+        }
+        if(nums[CI]==0){
+            return 10001;
+        }
+        int ans=10001;
+        for(int i=1;i<=nums[CI];i++){
+            int  Yes=1+Jump(nums,CI+i,target);
+             ans=Math.min(Yes,ans);
+            
+        }
+        return ans;
+    }
+}
