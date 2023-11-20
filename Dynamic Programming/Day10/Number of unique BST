@@ -1,0 +1,22 @@
+// It is just an application of nth Catalan number
+class Solution {
+    public int numTrees(int n) {
+        //Just Calculate nthCatalan Number
+           return Catalan(n,new HashMap<Integer,Integer>());
+    }
+    public static int Catalan(int n,HashMap<Integer,Integer> memo){
+        if(n==0 || n==1){
+            return 1;
+        }
+        int ck=n;
+        if(memo.containsKey(ck)){
+            return memo.get(ck);
+        }
+        int ways=0;
+        for(int i=0;i<n;i++){
+            ways+=Catalan(i,memo)*Catalan(n-i-1,memo);
+        }
+        memo.put(ck,ways);
+        return ways;
+    }
+}
